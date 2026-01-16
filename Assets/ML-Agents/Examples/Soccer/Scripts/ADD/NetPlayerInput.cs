@@ -1,7 +1,7 @@
-using System.Collections;
 using Mirror;
-using UnityEngine;
+using System.Collections;
 using Unity.Cinemachine;   // ✅ Cinemachine 3
+using UnityEngine;
 
 public class NetPlayerInput : NetworkBehaviour
 {
@@ -28,6 +28,8 @@ public class NetPlayerInput : NetworkBehaviour
     public int followPriorityOn = 30;
 
     private bool followMode = false;
+    private bool targetReady = false;
+
     private Coroutine attachRoutine;
 
     // =========================
@@ -53,6 +55,11 @@ public class NetPlayerInput : NetworkBehaviour
     public bool invertMoveZ = false;
     public bool invertRotate = false;
 
+    [Header("Dash")]
+    public float dashCooldown = 1f;
+    private float nextDashLocalTime = 0f; // 입력 난사 방지용(로컬)
+
+
     public override void OnStartLocalPlayer()
     {
         base.OnStartLocalPlayer();
@@ -74,6 +81,7 @@ public class NetPlayerInput : NetworkBehaviour
 
         // 기본은 Overview
         SetCameraMode(false);
+        targetReady = false;
 
         // Host에서 SyncVar가 이미 들어왔을 수 있어 1회 더 시도
         if (controlledNetId != 0)
@@ -98,9 +106,12 @@ public class NetPlayerInput : NetworkBehaviour
         if (!isLocalPlayer) return;
         if (newId == 0) return;
 
+        targetReady = false; // ✅ 추가 (새 타겟을 다시 붙이는 중)
+
         if (attachRoutine != null) StopCoroutine(attachRoutine);
         attachRoutine = StartCoroutine(AttachTargetWhenReady(newId));
     }
+
 
     private IEnumerator AttachTargetWhenReady(uint netId)
     {
@@ -125,11 +136,18 @@ public class NetPlayerInput : NetworkBehaviour
                     camTarget.CustomLookAtTarget = true;
                     followCam.Target = camTarget;
 
+                    // ✅ 추가: 카메라 초기 배치 (튐 방지)
+                    followCam.transform.position = target.position + (-target.forward * 5f) + (Vector3.up * 2f);
+                    followCam.transform.rotation = Quaternion.LookRotation(
+                        (target.position + Vector3.up * 1.5f) - followCam.transform.position
+                    );
+
                     // (선택) 초기화 트리거
                     followCam.enabled = false;
                     yield return null;
                     followCam.enabled = true;
 
+                    targetReady = true;
                     SetCameraMode(followMode);
                 }
 
@@ -215,7 +233,27 @@ public class NetPlayerInput : NetworkBehaviour
         }
 
         CmdSendInput(moveX, moveZ, rotate);
+
+#if UNITY_EDITOR || UNITY_STANDALONE
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (Time.time >= nextDashLocalTime)
+            {
+                nextDashLocalTime = Time.time + dashCooldown;
+                CmdDash();
+            }
+        }
+#endif
+
     }
+
+    [Command]
+    private void CmdDash()
+    {
+        if (myAgent == null) return;
+        myAgent.TryDash(); // 서버에서 쿨타임 최종 판정
+    }
+
 
     private void EnsureJoysticks()
     {
@@ -245,9 +283,21 @@ public class NetPlayerInput : NetworkBehaviour
     public void UI_ToggleCamera()
     {
         if (!isLocalPlayer) return;
+
         followMode = !followMode;
+
+        // ✅ 타겟 준비 전이면 follow로 못 넘어가게 막기
+        if (followMode && !targetReady)
+        {
+            followMode = false;
+            SetCameraMode(false);
+            Debug.Log("[NetPlayerInput] Follow target not ready yet.");
+            return;
+        }
+
         SetCameraMode(followMode);
     }
+
 
     [Command]
     void CmdSendInput(float moveX, float moveZ, float rotate)

@@ -21,10 +21,18 @@ namespace Mirror
 
         void OnGUI()
         {
-            // If this width is changed, also change offsetX in GUIConsole::OnGUI
-            int width = 300;
 
-            GUILayout.BeginArea(new Rect(10 + offsetX, 40 + offsetY, width, 9999));
+            // 전체 글씨/버튼 크기 키우기
+            GUI.skin.button.fontSize = 24;
+            GUI.skin.label.fontSize = 22;
+            GUI.skin.textField.fontSize = 22;
+
+            GUI.skin.button.fixedHeight = 60;
+            GUI.skin.textField.fixedHeight = 55;
+
+            int width = 600;
+            int height = 800;
+            GUILayout.BeginArea(new Rect(10 + offsetX, 40 + offsetY, width, height));
 
             if (!NetworkClient.isConnected && !NetworkServer.active)
                 StartButtons();
