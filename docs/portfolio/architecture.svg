@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="620" viewBox="0 0 1600 620">
+<rect width="100%" height="100%" fill="white"/>
+<g font-family="Malgun Gothic, Noto Sans CJK KR, sans-serif">
+<text x="35" y="38" font-size="30" fill="#4964ce" font-weight="700" text-anchor="start">CLIENT / SERVER / AI CONTROL</text>
+<text x="35" y="71" font-size="22" fill="#64718a" font-weight="400" text-anchor="start">Unity 축구 / 사람과 AI 제어를 나누고 서버에서 물리·경기 상태를 관리</text>
+<rect x="30" y="92" width="435" height="490" rx="17" fill="#f3f6fc" stroke="#d3dced" stroke-width="2"/>
+<text x="50" y="127" font-size="23" fill="#64718a" font-weight="700" text-anchor="start">클라이언트 / 플레이어</text>
+<rect x="535" y="92" width="620" height="490" rx="17" fill="#f0f8f7" stroke="#d3dced" stroke-width="2"/>
+<text x="555" y="127" font-size="23" fill="#64718a" font-weight="700" text-anchor="start">서버 / 경기 시뮬레이션</text>
+<rect x="1225" y="92" width="345" height="490" rx="17" fill="#f3f6fc" stroke="#d3dced" stroke-width="2"/>
+<text x="1245" y="127" font-size="23" fill="#64718a" font-weight="700" text-anchor="start">원격 클라이언트</text>
+<polyline points="420,215 610,215" fill="none" stroke="#4964ce" stroke-width="3"/>
+<polygon points="610,215 599.1946347717678,220.21958640933477 599.1946347717678,209.78041359066523" fill="#4964ce"/>
+<polyline points="1075,215 1120,215 1120,362 1095,362" fill="none" stroke="#4964ce" stroke-width="3"/>
+<polygon points="1095,362 1105.8053652282322,356.78041359066526 1105.8053652282322,367.21958640933474" fill="#4964ce"/>
+<polyline points="830,362 875,362" fill="none" stroke="#4964ce" stroke-width="3"/>
+<polygon points="875,362 864.1946347717678,367.21958640933474 864.1946347717678,356.78041359066526" fill="#4964ce"/>
+<polyline points="985,410 985,440 842,440 842,462" fill="none" stroke="#4964ce" stroke-width="3"/>
+<polygon points="842,462 836.7804135906653,451.1946347717679 847.2195864093347,451.1946347717679" fill="#4964ce"/>
+<polyline points="1095,385 1190,385 1190,240 1265,240" fill="none" stroke="#4964ce" stroke-width="3"/>
+<polygon points="1265,240 1254.1946347717678,245.21958640933477 1254.1946347717678,234.78041359066523" fill="#4964ce"/>
+<polyline points="1075,504 1265,482" fill="none" stroke="#4964ce" stroke-width="3"/>
+<polygon points="1265,482 1254.8667112878186,488.42778810132836 1253.6659873359897,478.0578994264412" fill="#4964ce"/>
+<polyline points="245,360 245,260" fill="none" stroke="#a36316" stroke-width="3" stroke-dasharray="10 7"/>
+<polygon points="245,260 250.21958640933477,270.8053652282321 239.78041359066523,270.8053652282321" fill="#a36316"/>
+<rect x="70" y="170" width="350" height="90" rx="14" fill="#ffffff" stroke="#d3dced" stroke-width="2"/>
+<text x="245.0" y="210.0" font-size="28" fill="#172842" font-weight="700" text-anchor="middle">사람 입력</text>
+<text x="245.0" y="242.0" font-size="22" fill="#64718a" font-weight="400" text-anchor="middle">PC / 모바일 → NetPlayerInput</text>
+<rect x="610" y="170" width="465" height="90" rx="14" fill="#ffffff" stroke="#d3dced" stroke-width="2"/>
+<text x="842.5" y="210.0" font-size="28" fill="#172842" font-weight="700" text-anchor="middle">이동 · 회전 처리</text>
+<text x="842.5" y="242.0" font-size="22" fill="#64718a" font-weight="400" text-anchor="middle">Command → Rigidbody</text>
+<rect x="610" y="315" width="220" height="95" rx="14" fill="#ffffff" stroke="#d3dced" stroke-width="2"/>
+<text x="720.0" y="341.0" font-size="22" fill="#172842" font-weight="700" text-anchor="middle">AI 캐릭터</text>
+<text x="720.0" y="373.0" font-size="22" fill="#64718a" font-weight="400" text-anchor="middle">AgentSoccer</text>
+<text x="720.0" y="399.0" font-size="22" fill="#64718a" font-weight="400" text-anchor="middle">OnActionReceived</text>
+<rect x="875" y="315" width="220" height="95" rx="14" fill="#ffffff" stroke="#d3dced" stroke-width="2"/>
+<text x="985.0" y="357.5" font-size="28" fill="#172842" font-weight="700" text-anchor="middle">공 물리 · 충돌</text>
+<text x="985.0" y="389.5" font-size="22" fill="#64718a" font-weight="400" text-anchor="middle">서버 Rigidbody</text>
+<rect x="610" y="462" width="465" height="85" rx="14" fill="#ffffff" stroke="#d3dced" stroke-width="2"/>
+<text x="842.5" y="499.5" font-size="28" fill="#172842" font-weight="700" text-anchor="middle">경기 상태 · 득점</text>
+<text x="842.5" y="531.5" font-size="22" fill="#64718a" font-weight="400" text-anchor="middle">Waiting / Playing / GameOver</text>
+<rect x="1265" y="190" width="265" height="100" rx="14" fill="#ffffff" stroke="#d3dced" stroke-width="2"/>
+<text x="1397.5" y="235.0" font-size="28" fill="#172842" font-weight="700" text-anchor="middle">장면 렌더링</text>
+<text x="1397.5" y="267.0" font-size="22" fill="#64718a" font-weight="400" text-anchor="middle">물리 중복 계산 비활성</text>
+<rect x="1265" y="425" width="265" height="115" rx="14" fill="#ffffff" stroke="#d3dced" stroke-width="2"/>
+<text x="1397.5" y="464.5" font-size="28" fill="#172842" font-weight="700" text-anchor="middle">점수 · 상태 UI</text>
+<text x="1397.5" y="496.5" font-size="22" fill="#64718a" font-weight="400" text-anchor="middle">SyncVar 공유</text>
+<text x="1397.5" y="522.5" font-size="22" fill="#64718a" font-weight="400" text-anchor="middle">netId → 카메라 추적</text>
+<rect x="70" y="360" width="350" height="130" rx="14" fill="#fff7ec" stroke="#e2c69b" stroke-width="2"/>
+<text x="245.0" y="407.0" font-size="28" fill="#a36316" font-weight="700" text-anchor="middle">플레이어 캐릭터 할당</text>
+<text x="245.0" y="439.0" font-size="22" fill="#64718a" font-weight="400" text-anchor="middle">사람이 조종하는 Agent는</text>
+<text x="245.0" y="465.0" font-size="22" fill="#64718a" font-weight="400" text-anchor="middle">ML-Agents 제어 비활성화</text>
+<rect x="436" y="181" width="106.0" height="30" rx="5" fill="white"/>
+<text x="440" y="204" font-size="21" fill="#4964ce" font-weight="400" text-anchor="start">Command</text>
+<rect x="1106" y="403" width="120.0" height="30" rx="5" fill="white"/>
+<text x="1110" y="426" font-size="21" fill="#4964ce" font-weight="400" text-anchor="start">상태 동기화</text>
+<rect x="1098" y="463" width="81.984375" height="30" rx="5" fill="white"/>
+<text x="1102" y="486" font-size="21" fill="#4964ce" font-weight="400" text-anchor="start">SyncVar</text>
+</g>
+</svg>

@@ -9,6 +9,8 @@
 
 ![코드를 기준으로 정리한 처리 흐름](docs/portfolio/architecture.png)
 
+[구성도 SVG 원본](docs/portfolio/architecture.svg)
+
 ## 본인 기여
 
 교육용 축구 게임을 준비하고 프로젝트 구조와 확장 방법을 멘토링했습니다. AI와 사람의 제어 경로, 서버 물리와 경기 상태 동기화를 다뤘습니다. Unity의 기존 Soccer 예제를 기반으로 확장한 프로젝트입니다.
